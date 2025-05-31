@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Encriptador/Decriptador</title>
+</head>
+<body>
+    <h1>Encriptador/Decriptador</h1>
+
+    <form action="/encriptar" method="post">
+        <textarea name="texto" rows="4" cols="50" placeholder="Digite o texto para encriptar"></textarea><br>
+        <button type="submit">Encriptar</button>
+    </form>
+
+    <form action="/decriptar" method="post" style="margin-top: 20px;">
+        <textarea name="texto" rows="4" cols="50" placeholder="Cole o texto para decriptar"></textarea><br>
+        <button type="submit">Decriptar</button>
+    </form>
+
+    {% if resultado %}
+    <h2>Resultado:</h2>
+    <p>{{ resultado }}</p>
+    {% endif %}
+
+</body>
+</html>
