@@ -11,14 +11,20 @@ def index():
 @app.route('/encriptar', methods=['POST'])
 def encriptar():
     texto = request.form.get('texto', '')
-    _, texto_encriptado = encriptar_texto(texto)
-    return render_template('index.html', resultado=texto_encriptado)
+    texto_original, texto_encriptado = encriptar_texto(texto)
+    return render_template('index.html',
+                           texto_original=texto_original,
+                           resultado=texto_encriptado,
+                           acao='Encriptado')
 
 @app.route('/decriptar', methods=['POST'])
 def decriptar():
     texto = request.form.get('texto', '')
-    _, texto_original = decriptar_texto(texto)
-    return render_template('index.html', resultado=texto_original)
+    texto_original, texto_decriptado = decriptar_texto(texto)
+    return render_template('index.html',
+                           texto_original=texto_original,
+                           resultado=texto_decriptado,
+                           acao='Decriptado')
 
 if __name__ == '__main__':
     app.run(debug=True)

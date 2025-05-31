@@ -10,18 +10,21 @@
     <h1>Encriptador / Desencriptador</h1>
 
     <form method="POST" action="/encriptar">
-      <textarea name="texto" placeholder="Digite o texto para encriptar" required></textarea>
+      <textarea name="texto" placeholder="Digite o texto para encriptar" required>{{ texto_original if acao == 'Encriptado' else '' }}</textarea>
       <button type="submit">Encriptar</button>
     </form>
 
     <form method="POST" action="/decriptar">
-      <textarea name="texto" placeholder="Cole o texto para desencriptar" required></textarea>
+      <textarea name="texto" placeholder="Cole o texto para desencriptar" required>{{ texto_original if acao == 'Decriptado' else '' }}</textarea>
       <button type="submit">Desencriptar</button>
     </form>
 
     {% if resultado %}
       <div class="resultado">
-        <h2>Resultado:</h2>
+        <h2>Texto original:</h2>
+        <p>{{ texto_original }}</p>
+
+        <h2>Texto {{ acao }}:</h2>
         <p>{{ resultado }}</p>
       </div>
     {% endif %}
