@@ -1,7 +1,7 @@
 ## # 🔐 Encriptador BNaval
 
-Um encriptador e decriptador de textos simples, desenvolvido com **Python** e **Flask**.
-Disponível online: [Acesse aqui](https://bnavalcrypto.onrender.com/)
+Um encriptador e decriptador de textos simples, desenvolvido com **Python** e **Flask**.<br>
+Disponível online: [Acesse aqui](https://bnavalcrypto.onrender.com/)<br>
 Repositório Programa inicial: [Script CLI](https://github.com/jandersonhp/ProjetoBNaval/)
 
 ---
