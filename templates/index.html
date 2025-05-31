@@ -1,25 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <title>Encriptador/Decriptador</title>
+  <meta charset="UTF-8" />
+  <title>Encriptador</title>
+  <link rel="stylesheet" href="static/style.css" />
 </head>
 <body>
-    <h1>Encriptador/Decriptador</h1>
+  <div class="container">
+    <h1>Encriptador / Desencriptador</h1>
 
-    <form action="/encriptar" method="post">
-        <textarea name="texto" rows="4" cols="50" placeholder="Digite o texto para encriptar"></textarea><br>
-        <button type="submit">Encriptar</button>
+    <form method="POST" action="/encriptar">
+      <textarea name="texto" placeholder="Digite o texto para encriptar" required></textarea>
+      <button type="submit">Encriptar</button>
     </form>
 
-    <form action="/decriptar" method="post" style="margin-top: 20px;">
-        <textarea name="texto" rows="4" cols="50" placeholder="Cole o texto para decriptar"></textarea><br>
-        <button type="submit">Decriptar</button>
+    <form method="POST" action="/decriptar">
+      <textarea name="texto" placeholder="Cole o texto para desencriptar" required></textarea>
+      <button type="submit">Desencriptar</button>
     </form>
 
     {% if resultado %}
-    <h2>Resultado:</h2>
-    <p>{{ resultado }}</p>
+      <div class="resultado">
+        <h2>Resultado:</h2>
+        <p>{{ resultado }}</p>
+      </div>
     {% endif %}
-
+  </div>
 </body>
 </html>
