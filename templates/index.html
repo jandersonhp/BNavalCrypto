@@ -3,31 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <title>Encriptador</title>
-  <link rel="stylesheet" href="static/style.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
 </head>
 <body>
-  <div class="container">
-    <h1>Encriptador / Desencriptador</h1>
+  <main>
+    <h1>Encriptador</h1>
 
     <form method="POST" action="/encriptar">
-      <textarea name="texto" placeholder="Digite o texto para encriptar" required>{{ texto_original if acao == 'Encriptado' else '' }}</textarea>
-      <button type="submit">Encriptar</button>
+      <textarea name="texto" placeholder="Digite o texto para encriptar" required></textarea>
+      <button>Encriptar</button>
     </form>
 
     <form method="POST" action="/decriptar">
-      <textarea name="texto" placeholder="Cole o texto para desencriptar" required>{{ texto_original if acao == 'Decriptado' else '' }}</textarea>
-      <button type="submit">Desencriptar</button>
+      <textarea name="texto" placeholder="Cole o texto para desencriptar" required></textarea>
+      <button>Desencriptar</button>
     </form>
 
     {% if resultado %}
-      <div class="resultado">
-        <h2>Texto original:</h2>
-        <p>{{ texto_original }}</p>
-
-        <h2>Texto {{ acao }}:</h2>
-        <p>{{ resultado }}</p>
-      </div>
+    <section class="resultado">
+      <strong>Resultado:</strong>
+      <p>{{ resultado }}</p>
+    </section>
     {% endif %}
-  </div>
+  </main>
 </body>
 </html>
