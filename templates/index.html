@@ -2,32 +2,48 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <title>Encriptador</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <title>BNaval Crypto</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=6" />
   <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
   <main>
     <h1>BNaval Crypto</h1>
 
-    <form method="POST" action="/encriptar">
-      <textarea name="texto" placeholder="Digite o texto para encriptar" required></textarea>
-      <button>Encriptar</button>
+    <form method="POST">
+      <div class="container">
+        <textarea name="texto" placeholder="Digite o texto aqui..." required>{{ texto_original or '' }}</textarea>
+
+        <div class="resultado">
+          <strong>{{ acao or "Resultado" }}:</strong>
+          <pre id="resultado-texto">{{ resultado or "O resultado aparecerá aqui." }}</pre>
+          <button type="button" id="btn-copiar" title="Copiar resultado">📋 Copiar</button>
+          <span id="msg-copiar" style="display:none; font-weight:bold; color:#4CAF50; margin-left: 10px;">Copiado!</span>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button type="submit" formaction="{{ url_for('encriptar') }}">🔐 Encriptar</button>
+        <button type="submit" formaction="{{ url_for('decriptar') }}">🔓 Desencriptar</button>
+      </div>
     </form>
 
-    <form method="POST" action="/decriptar">
-      <textarea name="texto" placeholder="Cole o texto para desencriptar" required></textarea>
-      <button>Desencriptar</button>
-    </form>
+    <script>
+      const btnCopiar = document.getElementById('btn-copiar');
+      const resultadoTexto = document.getElementById('resultado-texto');
+      const msgCopiar = document.getElementById('msg-copiar');
 
-{% if resultado %}
-  <div class="resultado">
-    <h2>Texto original:</h2>
-    <p>{{ texto_original }}</p>
-    <h2>Resultado:</h2>
-    <p>{{ resultado }}</p>
-  </div>
-{% endif %}
+      btnCopiar.addEventListener('click', () => {
+        const textToCopy = resultadoTexto.innerText;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          msgCopiar.style.display = 'inline';
+          setTimeout(() => { msgCopiar.style.display = 'none'; }, 2000);
+        }).catch(() => {
+          alert('Não foi possível copiar o texto.');
+        });
+      });
+    </script>
   </main>
 </body>
 </html>
